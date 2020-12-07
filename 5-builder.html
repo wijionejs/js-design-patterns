@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Builder</h1>
+
+<script>
+    class Car {
+        constructor() {
+            this.autopilot = false;
+            this.parktronic = false;
+            this.engine = 'V4';
+            this.signaling = true;
+        }
+    }
+
+    class CarBuilder {
+        constructor() {
+            this.car = new Car();
+        }
+
+        addAutopilot() {
+            this.car.autopilot = true;
+            return this;
+        }
+
+        addParktronic() {
+            this.car.parktronic = true;
+            return this;
+        }
+
+        updateEngine(type) {
+            this.car.engine = type;
+            return this;
+        }
+
+        build() {
+            return this.car;
+        }
+    }
+
+    const car1 = new CarBuilder().build();
+    const car2 = new CarBuilder().addAutopilot().addParktronic().updateEngine('V8').build();
+
+    console.log(car1, car2);
+</script>
+</body>
+</html>

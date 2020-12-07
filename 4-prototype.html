@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Prototype</h1>
+
+<script>
+    class TeslaCar {
+        constructor(model, color, price, autopilot = false) {
+            this.model = model;
+            this.color = color;
+            this.price = price;
+            this.autopilot = autopilot;
+        }
+
+        produce() {
+            return new TeslaCar(this.model, this.color, this.price, this.autopilot)
+        }
+    }
+
+    const prototypeCar = new TeslaCar('S', 'black', 50000);
+
+    const car1 = prototypeCar.produce();
+    const car2 = prototypeCar.produce();
+    const car3 = prototypeCar.produce();
+
+    car1.color = 'white';
+    car1.autopilot = true;
+
+    console.log(car1, car2, car3);
+</script>
+</body>
+</html>

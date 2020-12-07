@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Factory method</h1>
+
+<script>
+    class BMW {
+        constructor(model, price, speed) {
+            this.model = model;
+            this.price = price;
+            this.speed = speed;
+        }
+    }
+
+    class BMMFactory {
+        create(type) {
+            if(type === 'X5') {
+                return new BMW('X5', 60000, 280);
+            }
+            if(type === 'X6') {
+                return new BMW('X6', 80000, 300);
+            }
+        }
+    }
+
+    const factory = new BMMFactory();
+
+    const x5 = factory.create('X5');
+    const x6 = factory.create('X6');
+
+    console.log(x5, x6);
+</script>
+</body>
+</html>
