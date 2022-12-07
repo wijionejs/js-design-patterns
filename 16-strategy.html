@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Strategy</h1>
+
+<script>
+    function baseStrategy(amount) {
+        return amount;
+    }
+
+    function premiumStrategy(amount) {
+        return amount * 0.85;
+    }
+
+    function platinumStrategy(amount) {
+        return amount * 0.65;
+    }
+
+    class AutoCart {
+      constructor (discount) {
+        this.discount = discount;
+        this.amount = 0
+      }
+
+      checkout() {
+        return this.discount(this.amount);
+      }
+
+      setAmount(amount) {
+        this.amount = amount;
+      }
+    }
+
+    const baseCustomer = new AutoCart(baseStrategy);
+    const premiumCustomer = new AutoCart(premiumStrategy);
+    const platinumCustomer = new AutoCart(platinumStrategy);
+
+    baseCustomer.setAmount(5000);
+    console.log(baseCustomer.checkout());
+
+    premiumCustomer.setAmount(5000);
+    console.log(premiumCustomer.checkout());
+
+    platinumCustomer.setAmount(5000);
+    console.log(platinumCustomer.checkout());
+</script>
+</body>
+</html>

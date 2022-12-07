@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Facade</h1>
+
+<script>
+    class Conveyor {
+        setCarcase() {
+            console.log('Carcase was set')
+        }
+
+        getWheels() {
+            console.log('Wheels were changed')
+        }
+
+        setWheels() {
+            console.log('Wheels were set')
+        }
+
+        setDoors() {
+            console.log('Doors were set')
+        }
+
+        setEngine() {
+            console.log('Engine was set')
+        }
+
+        setInterior() {
+            console.log('Interior was set')
+        }
+    }
+
+    class ConveyorFacade {
+        constructor(car) {
+            this.car = car;
+        }
+
+        assembleCar() {
+            this.car.setCarcase();
+            this.car.setWheels();
+            this.car.setDoors();
+            this.car.setEngine();
+            this.car.setInterior();
+        }
+
+        updateWheels() {
+            this.car.updateWheels();
+        }
+    }
+
+    const conveyor = new ConveyorFacade(new Conveyor());
+
+    const car = conveyor.assembleCar();
+</script>
+</body>
+</html>

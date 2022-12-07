@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Visitor</h1>
+
+<script>
+    class Auto {
+      accept(visitor) {
+        visitor(this);
+      }
+    }
+
+    class BMW extends Auto{
+      info() {
+        return 'This is BMW M3'
+      }
+    }
+
+    class Tesla extends Auto{
+      info() {
+        return 'This is TESLA Model 3'
+      }
+    }
+
+    function exportVisitor(auto) {
+      if (auto instanceof  BMW) {
+        auto.export = console.log(`Exporting data: ${auto.info()}`);
+      } else if (auto instanceof  Tesla) {
+        auto.export = console.log(`Exporting data: ${auto.info()}`);
+      }
+    }
+
+    const bmw = new BMW();
+    const tesla = new Tesla();
+
+    bmw.accept(exportVisitor);
+    tesla.accept(exportVisitor);
+</script>
+</body>
+</html>

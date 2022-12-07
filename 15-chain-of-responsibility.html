@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Chain of responsibility</h1>
+
+<script>
+    class Account {
+      pay(amount) {
+        if (this.canPay(amount)) {
+          console.log(`Pay ${amount} by ${this.name}`);
+        } else if (this.incomer) {
+          console.log(`Can't pay with ${this.name}`);
+          this.incomer.pay(amount);
+        } else {
+          console.log(`Balance on ${this.name} is not enough`);
+        }
+      }
+
+      canPay(amount) {
+        return this.balance > amount;
+      }
+
+      setNext(incomer) {
+        this.incomer = incomer;
+      }
+    }
+
+    class Paypal extends Account {
+      constructor (balance) {
+        super();
+        this.balance = balance;
+        this.name = 'Paypal';
+      }
+    }
+
+    class Master extends Account {
+      constructor (balance) {
+        super();
+        this.balance = balance;
+        this.name = 'Master Card';
+      }
+    }
+
+    class Qiwi extends Account {
+      constructor (balance) {
+        super();
+        this.balance = balance;
+        this.name = 'Qiwi';
+      }
+    }
+
+    const master = new Master(150);
+    const paypal = new Paypal(250);
+    const qiwi = new Qiwi(450);
+
+    master.setNext(paypal);
+    paypal.setNext(qiwi);
+
+    master.pay(500);
+</script>
+</body>
+</html>

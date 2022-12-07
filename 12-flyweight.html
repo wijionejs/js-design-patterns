@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Flyweight</h1>
+
+<script>
+    class Auto {
+      constructor (model) {
+        this.model = model
+      }
+    }
+
+    class AutoFactory {
+      constructor () {
+        this.models = {}
+      }
+
+      create(name) {
+        const model = this.models[name];
+        if (model) return model;
+        this.models[name] = new Auto(name);
+        return this.models[name];
+      }
+
+      getModels() {
+        return this.models;
+      }
+    }
+
+    const factory = new AutoFactory();
+
+    const bmw = factory.create('BMW');
+    const audi = factory.create('Audi');
+    const mercedes = factory.create('Mercedes');
+    const blackBMW = factory.create('BMW');
+
+    console.log(factory.getModels());
+</script>
+</body>
+</html>

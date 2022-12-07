@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Iterator</h1>
+
+<script>
+    // Пример с простым массивом
+
+    class Iterator {
+      constructor (elements) {
+        this.elements = elements;
+        this.index = 0;
+      }
+
+      next() {
+        return this.elements[this.index++]
+      }
+
+      hasNext() {
+        return this.index < this.elements.length;
+      }
+    }
+
+    const carsIterator = new Iterator(['Audi', 'BMW', 'Mercedes', 'Renault']);
+
+    while (carsIterator.hasNext()) {
+      console.log(carsIterator.next())
+    }
+
+
+    // Пример с обьектом
+
+    class ObjIterator {
+      constructor (obj) {
+        this.elements = obj;
+        this.keys = Object.keys(obj);
+        this.index = 0;
+      }
+
+      next() {
+        return this.elements[this.keys[this.index++]]
+      }
+
+      hasNext() {
+        return this.index < this.keys.length;
+      }
+    }
+
+    const carsObjIterator = new ObjIterator({
+      audi: {
+        name: 'Audi',
+        model: 'S3'
+      },
+      bmw: {
+        name: 'BMW',
+        model: 'M3'
+      },
+      mercedes: {
+        name: 'Mercedes',
+        model: 'CLA 250'
+      }
+    });
+
+    while (carsObjIterator.hasNext()) {
+      console.log(carsObjIterator.next().model)
+    }
+</script>
+</body>
+</html>

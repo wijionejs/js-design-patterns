@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Mediator</h1>
+
+<script>
+    class OfficialDealer {
+      constructor () {
+        this.customers = []
+      }
+
+      orderAuto(customer, auto, info) {
+        const name = customer.getName();
+
+        console.log(`Order name: ${name}, Order auto: ${auto}`);
+        console.log(`Additional info: ${info}`);
+        this.addCustomer(name);
+      }
+
+      addCustomer(name) {
+        this.customers.push(name)
+      }
+
+      getCustomers() {
+        return this.customers;
+      }
+    }
+
+    class Customer {
+      constructor (name, dealerMediator) {
+        this.name = name;
+        this.mediator = dealerMediator;
+      }
+
+      getName() {
+        return this.name;
+      }
+
+      makeOrder(model, info) {
+        this.mediator.orderAuto(this, model, info);
+      }
+    }
+
+    const mediator = new OfficialDealer();
+
+    const yauhen = new Customer('Yauhen', mediator);
+    const ivan = new Customer('Ivan', mediator);
+
+    yauhen.makeOrder('BMW', 'black color');
+    ivan.makeOrder('Audi', 'white color');
+
+    console.log(mediator.getCustomers());
+</script>
+</body>
+</html>

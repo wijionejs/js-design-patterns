@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Template method</h1>
+
+<script>
+    class Builder {
+      build() {
+        this.addEngine();
+        this.installChassis();
+        this.addElectronic();
+        this.collectAccessories();
+      }
+    }
+
+    class BwmBuilder extends Builder {
+      addEngine() {
+        console.log('Add engine for BMW');
+      }
+
+      installChassis() {
+        console.log('Install chassis on BMW')
+      }
+
+      addElectronic() {
+        console.log('Add electronic for BMW')
+      }
+
+      collectAccessories() {
+        console.log('Add accessories for BMW')
+      }
+    }
+
+    class TeslaBuilder extends Builder {
+      addEngine() {
+        console.log('Add engine for Tesla');
+      }
+
+      installChassis() {
+        console.log('Install chassis on Tesla')
+      }
+
+      addElectronic() {
+        console.log('Add electronic for Tesla')
+      }
+
+      collectAccessories() {
+        console.log('Add accessories for Tesla')
+      }
+    }
+
+    const bmwBuilder = new BwmBuilder();
+    const teslaBuilder = new TeslaBuilder();
+
+    bmwBuilder.build();
+    teslaBuilder.build();
+</script>
+</body>
+</html>

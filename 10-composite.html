@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h1>Composite</h1>
+
+<script>
+    class Equipment {
+      getPrice() {
+        return this.price || 0;
+      }
+
+      setName(name) {
+        this.name = name
+      }
+
+      setPrice(price) {
+        this.price = price
+      }
+
+      getNam    e() {
+        return this.name;
+      }
+
+    }
+
+    class Engine extends Equipment {
+      constructor (name, price) {
+        super();
+        this.setName(name);
+        this.setPrice(price);
+      }
+    }
+
+    class Wheels extends Equipment {
+      constructor (name, price) {
+        super();
+        this.setName(name);
+        this.setPrice(price);
+      }
+    }
+
+    class Composite extends Equipment {
+      constructor () {
+        super();
+        this.equipments = []
+      }
+
+      add(eq) {
+        this.equipments.push(eq)
+      }
+
+      getPrice() {
+        return this.equipments.reduce((acc, val) => acc += val.getPrice(), 0);
+      }
+    }
+
+    class Car extends Composite {
+      constructor (name) {
+        super();
+        this.setName(name)
+      }
+    }
+
+    const car = new Car('BMW');
+    const engine = new Engine('engine v2', 4000);
+    const wheels = new Wheels('wheels', 2000);
+
+    car.add(engine);
+    car.add(wheels);
+
+    console.log(car.getPrice());
+</script>
+</body>
+</html>
